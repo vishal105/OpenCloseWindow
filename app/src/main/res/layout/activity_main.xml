@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="backviewmodel"
+            type="smartdrive.neube.example.com.openclosewindow.BackViewModel"/>
+    </data>
+    
+    
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/viewRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="smartdrive.neube.example.com.openclosewindow.MainActivity"
@@ -15,7 +23,7 @@
             android:layout_width="160sp"
             android:layout_height="160sp"
             android:layout_marginTop="32dp"
-            android:background="@drawable/btn1_selector"
+            android:background="@{backviewmodel.background}"
             app:layout_constraintEnd_toStartOf="@+id/buttond1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
