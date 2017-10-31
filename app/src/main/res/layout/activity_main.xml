@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="backviewmodel"
-            type="smartdrive.neube.example.com.openclosewindow.BackViewModel"/>
+            name="back"
+            type="smartdrive.neube.example.com.openclosewindow.Back" />
     </data>
-    
-    
+
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/viewRoot"
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:layout_width="160sp"
             android:layout_height="160sp"
             android:layout_marginTop="32dp"
-            android:background="@{backviewmodel.background}"
+            android:background="@{back.mDrawable}"
             app:layout_constraintEnd_toStartOf="@+id/buttond1"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +71,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttone2"
             app:layout_constraintTop_toTopOf="@+id/buttone2" />
+
 
     </android.support.constraint.ConstraintLayout>
 

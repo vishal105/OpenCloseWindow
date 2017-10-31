@@ -23,14 +23,28 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+ //       val Regular = BackViewModel()
 
-        binding.backviewmodel = viewModel
+        binding.back = viewModel.back
+
 //        binding.backviewmodel = viewModel.backviewmodel
-     //   viewModel.background.setColorValue(Color.BLUE)
-        buttone1.setOnClickListener { viewModel.setColor() }
+
+//        viewModel.back.setDrawableResource(R.mipmap.jaesquerde)
+
+       // viewModel.back.setDrawable(R.mipmap.jaesquerde)
+        buttone1.setOnClickListener { viewModel.setDrawable(context = this) }
+
+ //       buttone1.setOnClickListener { viewModel.setDrawableResources(R.mipmap.jaesquerde)}
+
+        //     buttone1.setOnClickListener { viewModel.setDrawable() }
+
+
+    //    Mas tu tava setando o `background` do `binding`. Tem que setar o `viewModel` do `binding`
 
 
     }
 
 }
+// check this activity with other project
+
 
