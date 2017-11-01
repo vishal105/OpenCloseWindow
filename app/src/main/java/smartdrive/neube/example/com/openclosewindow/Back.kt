@@ -20,7 +20,7 @@ class Back : BaseObservable() {
         private set
     var mColorValue: Int? = null
         private set
-    var mDrawable: Drawable? = null
+    lateinit var mDrawable: Drawable
         private set
     var mBitmap: Bitmap? = null
         private set
@@ -29,7 +29,6 @@ class Back : BaseObservable() {
         mDrawableResource = null
         mColorResource = null
         mColorValue = null
-        mDrawable = null
     }
 
     fun setDrawableResource(@DrawableRes drawableResource: Int) {
@@ -51,7 +50,6 @@ class Back : BaseObservable() {
     }
 
     fun setDrawable(drawable: Drawable) {
-        reset()
         mDrawable = drawable
         notifyChange()
     }
@@ -68,33 +66,33 @@ class Back : BaseObservable() {
     }
 }
 
-        @BindingAdapter("android:background")
+@BindingAdapter("android:background")
 
-        fun setBackground(view: View, observable: Back) {
-            if (observable.mDrawableResource != null)
-                observable.mDrawableResource?.let { view.setBackgroundResource(it) }
-            else if (observable.mColorResource != null)
-                observable.mColorResource?.let {
-                    val color = ContextCompat.getColor(view.context, it)
-                    view.setBackgroundColor(color)
-                }
-            else if (observable.mColorValue != null)
-                observable.mColorValue?.let { view.setBackgroundColor(it) }
-            else if (observable.mDrawable != null) {
-                observable.mDrawable?.let {
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-                        view.setBackgroundDrawable(it)
-                    else
-                        view.background = it
-                }
-            } else if (observable.mBitmap != null) {
-                observable.mBitmap?.let {
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-                        view.setBackgroundDrawable(BitmapDrawable(it))
-                    else
-                        view.background = BitmapDrawable(view.context.resources, it)
-                }
-            } else {
-                view.setBackgroundResource(0)
-            }
+fun setBackground(view: View, observable: Back) {
+    if (observable.mDrawableResource != null)
+        observable.mDrawableResource?.let { view.setBackgroundResource(it) }
+    else if (observable.mColorResource != null)
+        observable.mColorResource?.let {
+            val color = ContextCompat.getColor(view.context, it)
+            view.setBackgroundColor(color)
         }
+    else if (observable.mColorValue != null)
+        observable.mColorValue?.let { view.setBackgroundColor(it) }
+    else if (observable.mDrawable != null) {
+        observable.mDrawable?.let {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+                view.setBackgroundDrawable(it)
+            else
+                view.background = it
+        }
+    } else if (observable.mBitmap != null) {
+        observable.mBitmap?.let {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
+                view.setBackgroundDrawable(BitmapDrawable(it))
+            else
+                view.background = BitmapDrawable(view.context.resources, it)
+        }
+    } else {
+        view.setBackgroundResource(0)
+    }
+}
